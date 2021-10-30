@@ -1,12 +1,11 @@
-import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { NativeBaseProvider } from "native-base";
 import ProductsList from "./screens/ProductsList";
 import Home from "./screens/Home";
-import Login from "./screens/Login";
-import Signup from "./screens/Signup";
+import LogIn from "./screens/LogIn";
+import SignUp from "./screens/SignUp";
 
 const Stack = createStackNavigator();
 export default function App() {
@@ -19,10 +18,9 @@ export default function App() {
         >
           <Stack.Screen name="ProductsList" component={ProductsList} />
           <Stack.Screen name="Home" component={Home} />
-          <Stack.Screen name="Login" component={Login} />
-          <Stack.Screen name="Signup" component={Signup} />
+          <Stack.Screen name="SignUp" component={SignUp} />
+          <Stack.Screen name="LogIn" component={LogIn} />
         </Stack.Navigator>
-        <StatusBar backgroundColor="#df8d8e" />
       </NativeBaseProvider>
     </NavigationContainer>
   );
