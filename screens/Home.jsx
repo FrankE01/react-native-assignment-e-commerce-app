@@ -3,7 +3,7 @@ import { StatusBar } from "expo-status-bar";
 import { ImageBackground, Image, Text } from "react-native";
 import { Button, Center, Box, VStack } from "native-base";
 import loginbg from "../assets/images/loginbg.png";
-import applogo from "../assets/images/applogo.png";
+import applogo from "../assets/images/icon.png";
 import { useFonts } from "expo-font";
 
 export default function Home({ navigation }) {

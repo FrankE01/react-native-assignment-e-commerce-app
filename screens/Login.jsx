@@ -78,6 +78,9 @@ export default function SignUp({ navigation }) {
           margin={5}
           borderRadius={20}
           _text={{ fontSize: 25, fontFamily: "ZenKakuGothicNew" }}
+          onPress={() => {
+            navigation.navigate("ProductsList");
+          }}
         >
           Log In
         </Button>
