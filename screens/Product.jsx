@@ -1,70 +1,85 @@
-import React, { useState } from "react";
-import { View, Image, Text } from "react-native";
+import React, { useContext } from "react";
+import { View, Image, Text, Dimensions } from "react-native";
 import { VStack, HStack, FlatList } from "native-base";
-import products from "./inventory";
+import { useFonts } from "expo-font";
 import LikeButton from "./LikeButton";
+import AppContext from "../AppContext";
 
-export default function Product(props) {
-  const [icon, setIcon] = useState("heart-circle");
-  const [favorite, setFavorite] = useState(false);
-
+export default function Product() {
+  const { allProducts: products, handleLike } = useContext(AppContext);
+  const [loaded] = useFonts({
+    ZenKakuGothicNewBold: require("../assets/fonts/ZenKakuGothicNew-Bold.ttf"),
+    ZenKakuGothicNewRegular: require("../assets/fonts/ZenKakuGothicNew-Regular.ttf"),
+  });
+  if (!loaded) {
+    return null;
+  }
+  const renderItem = ({ item }) => {
+    return (
+      <VStack margin={1}>
+        <Image
+          source={item.thumb}
+          style={{
+            width: Dimensions.get("screen").width / 2.2,
+            height: Dimensions.get("screen").height / 2.8,
+            borderRadius: 30,
+            zIndex: 2,
+          }}
+        />
+        <View
+          style={{
+            top: -23,
+            width: Dimensions.get("screen").width / 2.2,
+            height: Dimensions.get("screen").height / 10,
+            backgroundColor: "#e8e8e8",
+            borderBottomRightRadius: 30,
+            borderBottomLeftRadius: 30,
+          }}
+        >
+          <VStack>
+            <Text
+              style={{
+                marginTop: 22,
+                marginLeft: 12,
+                fontSize: 20,
+                fontFamily: "ZenKakuGothicNewRegular",
+              }}
+            >
+              {item.name}
+            </Text>
+            <HStack
+              space={Dimensions.get("screen").width / 6}
+              alignSelf="center"
+            >
+              <Text
+                style={{
+                  marginLeft: 12,
+                  fontSize: 20,
+                  fontFamily: "ZenKakuGothicNewBold",
+                }}
+              >
+                {item.price}
+              </Text>
+              <LikeButton item={item} onLike={handleLike} />
+            </HStack>
+          </VStack>
+        </View>
+      </VStack>
+    );
+  };
   return (
     <FlatList
+      data={products}
+      renderItem={renderItem}
+      keyExtractor={(item) => item.id}
+      extraData={null}
+      numColumns={2}
       contentContainerStyle={{
         justifyContent: "center",
         flexDirection: "column",
         alignContent: "space-between",
         marginTop: 30,
       }}
-      data={products}
-      renderItem={({ item }) => {
-        return (
-          <VStack margin={2}>
-            <Image
-              source={item.thumb}
-              style={{ width: 190, height: 300, borderRadius: 30, zIndex: 2 }}
-            />
-            <View
-              style={{
-                top: -20,
-                width: 190,
-                height: 80,
-                backgroundColor: "#d3d3d3",
-                borderBottomRightRadius: 30,
-                borderBottomLeftRadius: 30,
-              }}
-            >
-              <VStack>
-                <Text
-                  style={{
-                    marginTop: 20,
-                    marginLeft: 12,
-                    fontSize: 20,
-                    fontFamily: "ZenKakuGothicNew",
-                  }}
-                >
-                  {item.name}
-                </Text>
-                <HStack space={20} alignSelf="center">
-                  <Text
-                    style={{
-                      marginLeft: 12,
-                      fontSize: 20,
-                      fontFamily: "ZenKakuGothicNew",
-                    }}
-                  >
-                    {item.price}
-                  </Text>
-                  <LikeButton item={item} />
-                </HStack>
-              </VStack>
-            </View>
-          </VStack>
-        );
-      }}
-      keyExtractor={(item) => item.id}
-      extraData={null}
-      numColumns={2}
     />
   );
 }

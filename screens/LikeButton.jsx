@@ -1,27 +1,33 @@
 import React, { useState } from "react";
-import { Pressable } from "native-base";
-import { Ionicons } from "@expo/vector-icons";
+import { Dimensions } from "react-native";
+import { Pressable, Button } from "native-base";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-export default function LikeButton(props) {
-  const [icon, setIcon] = useState(props.item.icon);
-  const [favorite, setFavorite] = useState(props.item.favorite);
-
+export default function LikeButton({ item, onLike }) {
   return (
     <Pressable
+      bg={styles.pressable.colorScheme}
+      size={8}
+      shadow={3}
+      borderRadius={10}
       onPress={() => {
-        if (icon == "heart-circle-outline" && favorite == true) {
-          setIcon("heart-circle");
-          setFavorite(false);
+        if (item.icon == "cart-plus" && item.favorite == false) {
+          item.icon = "cart-minus";
+          item.favorite = true;
         } else {
-          setIcon("heart-circle-outline");
-          setFavorite(true);
+          item.icon = "cart-plus";
+          item.favorite = false;
         }
-        props.item.icon = icon;
-        props.item.favorite = favorite;
-        console.log(icon, props.item.favorite);
+        onLike(item);
       }}
     >
-      <Ionicons name={icon} size={40} color="black" style={{ margin: -10 }} />
+      <MaterialCommunityIcons name={item.icon} size={30} color="black" />
     </Pressable>
   );
 }
+
+const styles = {
+  pressable: {
+    colorScheme: "#df8d8e",
+  },
+};

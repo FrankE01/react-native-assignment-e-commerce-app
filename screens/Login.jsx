@@ -10,14 +10,15 @@ import {
   Text,
   Box,
 } from "native-base";
-import { FontAwesome5, Entypo } from "@expo/vector-icons";
+import { Dimensions } from "react-native";
+import { Ionicons, Entypo } from "@expo/vector-icons";
 import { useFonts } from "expo-font";
 
 export default function SignUp({ navigation }) {
   const [secure, setSecure] = useState(true);
   const [icon, setIcon] = useState("eye-with-line");
   const [loaded] = useFonts({
-    ZenKakuGothicNew: require("../assets/fonts/ZenKakuGothicNew-Bold.ttf"),
+    ZenKakuGothicNewBold: require("../assets/fonts/ZenKakuGothicNew-Bold.ttf"),
   });
 
   if (!loaded) {
@@ -33,14 +34,14 @@ export default function SignUp({ navigation }) {
             navigation.goBack();
           }}
         >
-          <FontAwesome5 name="less-than" size={24} color="black" />
+          <Ionicons name="chevron-back" size={24} color="black" />
         </Pressable>
       </HStack>
       <Center flex={1} px={3}>
-        <Heading fontFamily="ZenKakuGothicNew">Create Account</Heading>
+        <Heading fontFamily="ZenKakuGothicNewBold">Create Account</Heading>
         <FormControl>
           <FormControl.Label>USERNAME OR EMAIL</FormControl.Label>
-          <Input style={styles.input} />
+          <Input variant="underlined" style={styles.input} />
           <FormControl.Label>PASSWORD</FormControl.Label>
           <Box
             style={{
@@ -48,12 +49,13 @@ export default function SignUp({ navigation }) {
             }}
           >
             <Input
+              variant="underlined"
               style={{
                 fontSize: 20,
                 marginBottom: 30,
                 borderWidth: 0,
                 borderBottomWidth: 2,
-                width: 350,
+                width: Dimensions.get("screen").width / 1.2,
               }}
               secureTextEntry={secure}
             />
@@ -77,8 +79,9 @@ export default function SignUp({ navigation }) {
           height={50}
           margin={5}
           borderRadius={20}
-          _text={{ fontSize: 25, fontFamily: "ZenKakuGothicNew" }}
+          _text={{ fontSize: 25, fontFamily: "ZenKakuGothicNewBold" }}
           onPress={() => {
+            navigation.pop();
             navigation.navigate("ProductsList");
           }}
         >
@@ -100,8 +103,6 @@ const styles = {
   input: {
     fontSize: 20,
     marginBottom: 30,
-    borderWidth: 0,
-    borderBottomWidth: 2,
   },
   password: {
     type: "password",

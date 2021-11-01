@@ -8,7 +8,7 @@ import { useFonts } from "expo-font";
 
 export default function Home({ navigation }) {
   const [loaded] = useFonts({
-    ZenKakuGothicNew: require("../assets/fonts/ZenKakuGothicNew-Bold.ttf"),
+    ZenKakuGothicNewBold: require("../assets/fonts/ZenKakuGothicNew-Bold.ttf"),
   });
 
   if (!loaded) {
@@ -31,7 +31,7 @@ export default function Home({ navigation }) {
           <Text
             style={{
               fontSize: 40,
-              fontFamily: "ZenKakuGothicNew",
+              fontFamily: "ZenKakuGothicNewBold",
             }}
           >
             KROMCASE
@@ -44,7 +44,7 @@ export default function Home({ navigation }) {
             _text={{
               color: "black",
               fontSize: 25,
-              fontFamily: "ZenKakuGothicNew",
+              fontFamily: "ZenKakuGothicNewBold",
             }}
             onPress={() => navigation.navigate("LogIn")}
           >
@@ -53,7 +53,7 @@ export default function Home({ navigation }) {
           <Button
             colorScheme={styles.button.signUp.backgroundColor}
             style={styles.button}
-            _text={{ fontSize: 25, fontFamily: "ZenKakuGothicNew" }}
+            _text={{ fontSize: 25, fontFamily: "ZenKakuGothicNewBold" }}
             onPress={() => navigation.navigate("SignUp")}
           >
             Sign Up
