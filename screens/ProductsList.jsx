@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { StatusBar } from "expo-status-bar";
 import { Dimensions } from "react-native";
 import {
@@ -13,8 +13,13 @@ import {
 } from "native-base";
 import { MaterialCommunityIcons, Ionicons } from "@expo/vector-icons";
 import Product from "./Product";
+import AppContext from "../AppContext";
 
 export default function ProductsList({ navigation }) {
+  const { allProducts, handleLike: onLike } = useContext(AppContext);
+  const likedProducts = allProducts.filter((product) => {
+    return product.favorite == true;
+  });
   return (
     <React.Fragment>
       <StatusBar backgroundColor="#df8d8e" />
@@ -30,7 +35,16 @@ export default function ProductsList({ navigation }) {
         alignSelf="center"
         alignContent="space-between"
       >
-        <Pressable opacity={0.75} marginLeft={2}>
+        <Pressable
+          opacity={0.75}
+          marginLeft={2}
+          onPress={() => {
+            navigation.navigate("Account");
+          }}
+          bg="#fff"
+          padding={1.5}
+          borderRadius={10}
+        >
           <MaterialCommunityIcons name="account" size={24} color="black" />
         </Pressable>
         <Text fontFamily="ZenKakuGothicNewBold" fontSize={24}>
@@ -40,8 +54,16 @@ export default function ProductsList({ navigation }) {
           opacity={0.75}
           marginRight={2}
           onPress={() => navigation.navigate("Cart")}
+          bg="#fff"
+          padding={1.5}
+          borderRadius={10}
+          position="relative"
         >
-          <MaterialCommunityIcons name="cart" size={24} color="black" />
+          <MaterialCommunityIcons
+            name={likedProducts.length === 0 ? "cart" : "cart-arrow-right"}
+            size={24}
+            color="black"
+          />
         </Pressable>
       </HStack>
       <Box
@@ -71,14 +93,14 @@ export default function ProductsList({ navigation }) {
           }
         />
       </Box>
-      <ScrollView flex={1} flexDirection="column">
+      <ScrollView>
         <Heading
           marginTop={5}
           marginLeft={5}
           marginBottom={0}
           fontFamily="ZenKakuGothicNewBold"
         >
-          Welcome, User {String.fromCodePoint(0x1f389)}
+          Welcome, User {String.fromCodePoint(0x1f44b)}
         </Heading>
         <Text
           fontFamily="ZenKakuGothicNewRegular"

@@ -19,8 +19,8 @@ export default function SignUp({ navigation }) {
   const [icon, setIcon] = useState("eye-with-line");
   const [loaded] = useFonts({
     ZenKakuGothicNewBold: require("../assets/fonts/ZenKakuGothicNew-Bold.ttf"),
+    ZenKakuGothicNewRegular: require("../assets/fonts/ZenKakuGothicNew-Regular.ttf"),
   });
-
   if (!loaded) {
     return null;
   }
@@ -40,11 +40,17 @@ export default function SignUp({ navigation }) {
       <Center flex={1} px={3}>
         <Heading fontFamily="ZenKakuGothicNewBold">Create Account</Heading>
         <FormControl>
-          <FormControl.Label>USERNAME</FormControl.Label>
+          <FormControl.Label _text={{ fontFamily: "ZenKakuGothicNewRegular" }}>
+            USERNAME
+          </FormControl.Label>
           <Input variant="underlined" style={styles.input} />
-          <FormControl.Label>EMAIL</FormControl.Label>
+          <FormControl.Label _text={{ fontFamily: "ZenKakuGothicNewRegular" }}>
+            EMAIL
+          </FormControl.Label>
           <Input variant="underlined" style={styles.input} />
-          <FormControl.Label>PASSWORD</FormControl.Label>
+          <FormControl.Label _text={{ fontFamily: "ZenKakuGothicNewRegular" }}>
+            PASSWORD
+          </FormControl.Label>
           <Box
             style={{
               flexDirection: "row",

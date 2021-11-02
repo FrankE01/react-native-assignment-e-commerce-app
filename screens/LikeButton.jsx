@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import { Dimensions } from "react-native";
-import { Pressable, Button } from "native-base";
+import React from "react";
+import { Pressable } from "native-base";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
 export default function LikeButton({ item, onLike }) {

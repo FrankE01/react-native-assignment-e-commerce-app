@@ -11,8 +11,8 @@ import {
   Input,
   Button,
   Center,
-  ScrollView,
   Divider,
+  useToast,
 } from "native-base";
 import {
   MaterialIcons,
@@ -32,6 +32,7 @@ export default function Cart({ navigation }) {
     sub += parseInt(item.price.split(".")[0].substr(1)) * parseInt(item.order);
   });
   const [subtotal, setSubtotal] = useState(sub);
+  const toast = useToast();
 
   const renderItem = ({ item }) => {
     return (
@@ -156,89 +157,117 @@ export default function Cart({ navigation }) {
     }
     return (
       <>
-        <ScrollView>
-          <FlatList
-            data={likedProducts}
-            renderItem={renderItem}
-            keyExtractor={(item) => item.id}
-            extraData={null}
-            contentContainerStyle={{
-              justifyContent: "center",
-              flexDirection: "column",
-              alignContent: "space-between",
-              marginTop: 30,
-            }}
-          />
-        </ScrollView>
-        <Input
-          placeholder="Promo Code"
-          py="2"
-          px="2"
-          margin={10}
-          bg="#fff"
-          fontSize={20}
-          borderWidth={0}
-          borderRadius={10}
-          style={{}}
-          InputRightElement={
-            <Button bg="#d78d8e" _text={{ color: "#fff" }} margin={2}>
-              Apply
-            </Button>
-          }
+        {/* <ScrollView> */}
+        <FlatList
+          keyboardDismissMode="on-drag"
+          data={likedProducts}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
+          extraData={null}
+          contentContainerStyle={{
+            justifyContent: "center",
+            flexDirection: "column",
+            alignContent: "space-between",
+          }}
         />
-        <VStack>
-          <HStack
-            justifyContent="space-between"
-            alignItems="center"
-            width={Dimensions.get("screen").width}
-            padding={5}
-            alignSelf="center"
-          >
-            <Text fontSize={20} fontFamily="ZenKakuGothicNewRegular">
-              Subtotal:
-            </Text>
-            {setSubtotal(sub)}
-            <Text fontSize={20} fontFamily="ZenKakuGothicNewBold">
-              {"$" + subtotal + ".00"}
-            </Text>
-          </HStack>
-          <Divider
-            width={Dimensions.get("screen").width / 1.2}
-            alignSelf="center"
+        {/* </ScrollView> */}
+        <Box bg="#e8e8e8" borderTopLeftRadius={40} borderTopRightRadius={40}>
+          <Input
+            placeholder="Promo Code"
+            py="2"
+            px="2"
+            margin={8}
+            bg="#fff"
+            fontSize={20}
+            borderWidth={0}
+            borderRadius={10}
+            InputRightElement={
+              <Button
+                bg="#d78d8e"
+                _text={{ color: "#fff" }}
+                margin={2}
+                onPress={() => {
+                  toast.show({
+                    title: "Promo Code Applied",
+                    status: "success",
+                    description: "Discount + $0.00",
+                  });
+                }}
+              >
+                Apply
+              </Button>
+            }
           />
-          <HStack
-            justifyContent="space-between"
-            alignItems="center"
-            width={Dimensions.get("screen").width}
-            padding={5}
-            alignSelf="center"
-          >
-            <Text fontSize={20} fontFamily="ZenKakuGothicNewRegular">
-              {"Discount & Shipping"}:
-            </Text>
-            <Text fontSize={20} fontFamily="ZenKakuGothicNewBold">
-              {"-$" + discount + ".00"}
-            </Text>
-          </HStack>
-          <Divider
-            width={Dimensions.get("screen").width / 1.2}
-            alignSelf="center"
-          />
-          <HStack
-            justifyContent="space-between"
-            alignItems="center"
-            width={Dimensions.get("screen").width}
-            padding={5}
-            alignSelf="center"
-          >
-            <Text fontSize={20} fontFamily="ZenKakuGothicNewBold">
-              Amount to pay:
-            </Text>
-            <Text fontSize={20} fontFamily="ZenKakuGothicNewBold">
-              {"$" + (subtotal - discount) + ".00"}
-            </Text>
-          </HStack>
-        </VStack>
+          <VStack>
+            <HStack
+              justifyContent="space-between"
+              alignItems="center"
+              width={Dimensions.get("screen").width}
+              padding={2}
+              alignSelf="center"
+            >
+              <Text fontSize={20} fontFamily="ZenKakuGothicNewRegular">
+                Subtotal:
+              </Text>
+              {setSubtotal(sub)}
+              <Text fontSize={20} fontFamily="ZenKakuGothicNewBold">
+                {"$" + subtotal + ".00"}
+              </Text>
+            </HStack>
+            <Divider
+              width={Dimensions.get("screen").width / 1.2}
+              alignSelf="center"
+              bg="#000"
+            />
+            <HStack
+              justifyContent="space-between"
+              alignItems="center"
+              width={Dimensions.get("screen").width}
+              padding={2}
+              alignSelf="center"
+            >
+              <Text fontSize={20} fontFamily="ZenKakuGothicNewRegular">
+                {"Discount & Shipping"}:
+              </Text>
+              <Text fontSize={20} fontFamily="ZenKakuGothicNewBold">
+                {"-$" + discount + ".00"}
+              </Text>
+            </HStack>
+            <Divider
+              width={Dimensions.get("screen").width / 1.2}
+              alignSelf="center"
+              bg="#000"
+            />
+            <HStack
+              justifyContent="space-between"
+              alignItems="center"
+              width={Dimensions.get("screen").width}
+              padding={2}
+              alignSelf="center"
+            >
+              <Text fontSize={20} fontFamily="ZenKakuGothicNewBold">
+                Amount to pay:
+              </Text>
+              <Text fontSize={20} fontFamily="ZenKakuGothicNewBold">
+                {"$" + (subtotal - discount) + ".00"}
+              </Text>
+            </HStack>
+            <Button
+              width={300}
+              height={50}
+              margin={5}
+              borderRadius={20}
+              _text={{ fontSize: 25, fontFamily: "ZenKakuGothicNewBold" }}
+              onPress={() => {
+                navigation.navigate("Checkout", {
+                  amount: subtotal - discount,
+                });
+              }}
+            >
+              Proceed to Checkout
+            </Button>
+          </VStack>
+        </Box>
       </>
     );
   };
