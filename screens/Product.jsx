@@ -45,6 +45,7 @@ export default function Product({ handleNavigation }) {
             <VStack>
               <Text
                 style={{
+                  textAlign: "center",
                   marginTop: 22,
                   marginLeft: 12,
                   fontSize: 20,
