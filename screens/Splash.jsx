@@ -14,7 +14,7 @@ export default function Splash({ navigation }) {
   const artificialDelay = () => {
     setTimeout(() => {
       navigation.replace("Home");
-    }, 4000);
+    }, 3000);
   };
   if (!loaded) {
     return null;

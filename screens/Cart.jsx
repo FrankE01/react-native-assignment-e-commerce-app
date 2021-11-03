@@ -14,26 +14,19 @@ import {
   Divider,
   useToast,
 } from "native-base";
-import {
-  MaterialIcons,
-  MaterialCommunityIcons,
-  Ionicons,
-} from "@expo/vector-icons";
+import { MaterialIcons, Ionicons } from "@expo/vector-icons";
 import AppContext from "../AppContext";
 
 export default function Cart({ navigation }) {
-  const { allProducts, handleLike: onLike } = useContext(AppContext);
+  const { cart, addCart } = useContext(AppContext);
   let sub = 0;
   let discount = 10;
-  const likedProducts = allProducts.filter((product) => {
-    return product.favorite == true;
-  });
-  likedProducts.map((item) => {
+  cart.map((item) => {
     sub += parseInt(item.price.split(".")[0].substr(1)) * parseInt(item.order);
   });
   const [subtotal, setSubtotal] = useState(sub);
   const toast = useToast();
-
+  var img;
   const renderItem = ({ item }) => {
     return (
       <HStack
@@ -50,23 +43,22 @@ export default function Cart({ navigation }) {
           alt={item.id}
           borderRadius={10}
         />
-
+        {console.log(item.thumb)}
         <VStack flex={1} justifyContent="space-between" marginLeft={3}>
-          <Text fontFamily={"ZenKakuGothicNewRegular"} fontSize={17}>
+          <Text fontFamily="ZenKakuGothicNewRegular" fontSize={17}>
             {item.name}
           </Text>
-          <Text fontFamily={"ZenKakuGothicNewBold"} fontSize={22} color="#000">
+          <Text>{item.phone}</Text>
+          <Text fontFamily="ZenKakuGothicNewBold" fontSize={22} color="#000">
             {item.price}
           </Text>
         </VStack>
         <VStack flex={1} alignItems="flex-end" justifyContent="space-between">
           <Pressable
             onPress={() => {
-              item.icon = "cart-plus";
-              item.favorite = false;
-              onLike(item);
+              addCart(item);
               sub = 0;
-              likedProducts.map((item) => {
+              cart.map((item) => {
                 sub +=
                   parseInt(item.price.split(".")[0].substr(1)) *
                   parseInt(item.order);
@@ -92,12 +84,14 @@ export default function Cart({ navigation }) {
                 let v = parseInt(item.order);
                 if (v > 0) v--;
                 item.order = v.toString();
-                onLike(item);
                 sub = 0;
-                likedProducts.map((item) => {
+                cart.map((citem) => {
+                  if (citem.id === item.id && citem.phone === item.phone) {
+                    citem.order = item.order;
+                  }
                   sub +=
-                    parseInt(item.price.split(".")[0].substr(1)) *
-                    parseInt(item.order);
+                    parseInt(citem.price.split(".")[0].substr(1)) *
+                    parseInt(citem.order);
                 });
                 setSubtotal(sub);
               }}
@@ -124,12 +118,14 @@ export default function Cart({ navigation }) {
                 let v = parseInt(item.order);
                 v++;
                 item.order = v.toString();
-                onLike(item);
                 sub = 0;
-                likedProducts.map((item) => {
+                cart.map((citem) => {
+                  if (citem.id === item.id && citem.phone === item.phone) {
+                    citem.order = item.order;
+                  }
                   sub +=
-                    parseInt(item.price.split(".")[0].substr(1)) *
-                    parseInt(item.order);
+                    parseInt(citem.price.split(".")[0].substr(1)) *
+                    parseInt(citem.order);
                 });
                 setSubtotal(sub);
               }}
@@ -141,9 +137,8 @@ export default function Cart({ navigation }) {
       </HStack>
     );
   };
-
   const List = () => {
-    if (likedProducts.length === 0) {
+    if (cart.length === 0) {
       return (
         <Center flex={1}>
           <Text fontSize={24} fontFamily="ZenKakuGothicNewBold">
@@ -157,10 +152,9 @@ export default function Cart({ navigation }) {
     }
     return (
       <>
-        {/* <ScrollView> */}
         <FlatList
           keyboardDismissMode="on-drag"
-          data={likedProducts}
+          data={cart}
           renderItem={renderItem}
           keyExtractor={(item) => item.id}
           extraData={null}
@@ -170,7 +164,6 @@ export default function Cart({ navigation }) {
             alignContent: "space-between",
           }}
         />
-        {/* </ScrollView> */}
         <Box bg="#e8e8e8" borderTopLeftRadius={40} borderTopRightRadius={40}>
           <Input
             placeholder="Promo Code"
@@ -271,8 +264,9 @@ export default function Cart({ navigation }) {
       </>
     );
   };
+
   return (
-    <React.Fragment>
+    <>
       <StatusBar backgroundColor="#df8d8e" />
       <HStack
         bg="#df8d8e"
@@ -283,10 +277,8 @@ export default function Cart({ navigation }) {
         width={Dimensions.get("screen").width}
         marginTop={39}
         paddingTop={5}
-        alignSelf="center"
-        alignContent="space-between"
-        borderBottomRightRadius={30}
         borderBottomLeftRadius={30}
+        borderBottomRightRadius={30}
       >
         <Pressable
           opacity={0.75}
@@ -294,17 +286,29 @@ export default function Cart({ navigation }) {
             navigation.goBack();
           }}
           marginLeft={2}
+          bg="#fff"
+          padding={1.5}
+          borderRadius={10}
         >
           <Ionicons name="chevron-back" size={24} color="black" />
         </Pressable>
         <Text fontFamily="ZenKakuGothicNewBold" fontSize={24}>
           My Cart
         </Text>
-        <Pressable opacity={0.75} marginRight={2}>
-          <MaterialCommunityIcons name="account" size={24} color="black" />
+        <Pressable
+          opacity={0.75}
+          marginRight={2}
+          onPress={() => {
+            navigation.navigate("Settings");
+          }}
+          bg="#fff"
+          padding={1.5}
+          borderRadius={10}
+        >
+          <Ionicons name="settings" size={24} color="black" />
         </Pressable>
       </HStack>
       <List />
-    </React.Fragment>
+    </>
   );
 }

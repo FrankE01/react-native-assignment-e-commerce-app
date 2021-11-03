@@ -16,10 +16,13 @@ import Product from "./Product";
 import AppContext from "../AppContext";
 
 export default function ProductsList({ navigation }) {
-  const { allProducts, handleLike: onLike } = useContext(AppContext);
+  const { allProducts, cart } = useContext(AppContext);
   const likedProducts = allProducts.filter((product) => {
     return product.favorite == true;
   });
+  const handleNavigation = (item) => {
+    navigation.navigate("ProductDetails", { item: item });
+  };
   return (
     <React.Fragment>
       <StatusBar backgroundColor="#df8d8e" />
@@ -47,9 +50,17 @@ export default function ProductsList({ navigation }) {
         >
           <MaterialCommunityIcons name="account" size={24} color="black" />
         </Pressable>
-        <Text fontFamily="ZenKakuGothicNewBold" fontSize={24}>
-          KROMCASE
-        </Text>
+        <Box flexDirection="row">
+          <Text fontFamily="ZenKakuGothicNewBold" fontSize={24}>
+            KROMCASE
+          </Text>
+          <MaterialCommunityIcons
+            style={{ paddingTop: 18 }}
+            name="registered-trademark"
+            size={12}
+            color="black"
+          />
+        </Box>
         <Pressable
           opacity={0.75}
           marginRight={2}
@@ -60,7 +71,7 @@ export default function ProductsList({ navigation }) {
           position="relative"
         >
           <MaterialCommunityIcons
-            name={likedProducts.length === 0 ? "cart" : "cart-arrow-right"}
+            name={cart.length === 0 ? "cart" : "cart-arrow-right"}
             size={24}
             color="black"
           />
@@ -111,7 +122,7 @@ export default function ProductsList({ navigation }) {
           Discover our exclusive phone cases and beautify your phone
         </Text>
         <Center flex={1}>
-          <Product />
+          <Product handleNavigation={handleNavigation} />
         </Center>
       </ScrollView>
     </React.Fragment>

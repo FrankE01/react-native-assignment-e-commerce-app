@@ -11,31 +11,28 @@ import {
   Button,
 } from "native-base";
 import { StatusBar } from "expo-status-bar";
-import { Dimensions } from "react-native";
+import { Dimensions, Linking } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
-export default function Account({ navigation }) {
+export default function Settings({ navigation }) {
   const [isOpen, setIsOpen] = useState(false);
   const onClose = () => setIsOpen(false);
-  const ConfirmLogOut = () => {
+  const Credits = () => {
     return (
       <AlertDialog isOpen={isOpen} onClose={onClose}>
         <AlertDialog.Content>
           <AlertDialog.CloseButton />
-          <AlertDialog.Header>Log Out</AlertDialog.Header>
-          <AlertDialog.Body>Are you sure you want to log out?</AlertDialog.Body>
+          <AlertDialog.Header>Credits</AlertDialog.Header>
+          <AlertDialog.Body>
+            {"This app was single-handedly designed and developed by the world's greatest programmer (very soon), Francis Echesi. \nPlease give me extra credits " +
+              String.fromCodePoint("0x1f97a") +
+              String.fromCodePoint("0x1f64f") +
+              "\n\nDonate to developer: +233 55 115 3279"}
+          </AlertDialog.Body>
           <AlertDialog.Footer>
-            <Button.Group space={2}>
-              <Button variant="solid" colorScheme="coolGray" onPress={onClose}>
-                Cancel
-              </Button>
-              <Button
-                colorScheme="danger"
-                onPress={() => navigation.popToTop()}
-              >
-                Log Out
-              </Button>
-            </Button.Group>
+            <Button colorScheme="primary" onPress={onClose}>
+              Close
+            </Button>
           </AlertDialog.Footer>
         </AlertDialog.Content>
       </AlertDialog>
@@ -68,66 +65,24 @@ export default function Account({ navigation }) {
           >
             <Ionicons name="chevron-back" size={24} color="black" />
             <Heading marginLeft={1} fontFamily="ZenKakuGothicNewBold">
-              Account
+              Settings
             </Heading>
           </Pressable>
         </HStack>
         <VStack>
           <Divider />
-          <HStack margin={5} justifyContent="space-between">
-            <Text fontFamily="ZenKakuGothicNewBold" fontSize={16}>
-              Username
-            </Text>
-            <Text fontFamily="ZenKakuGothicNewRegular" fontSize={16}>
-              Some weird name
-            </Text>
-          </HStack>
-          <Divider />
-          <HStack margin={5} justifyContent="space-between">
-            <Text fontFamily="ZenKakuGothicNewBold" fontSize={16}>
-              Email
-            </Text>
-            <Text fontFamily="ZenKakuGothicNewRegular" fontSize={16}>
-              Some weird email
-            </Text>
-          </HStack>
-          <Divider />
-          <HStack margin={5} justifyContent="space-between">
-            <Text fontFamily="ZenKakuGothicNewBold" fontSize={16}>
-              First Name
-            </Text>
-            <Text fontFamily="ZenKakuGothicNewRegular" fontSize={16}>
-              Some weird name
-            </Text>
-          </HStack>
-          <Divider />
-          <HStack margin={5} justifyContent="space-between">
-            <Text fontFamily="ZenKakuGothicNewBold" fontSize={16}>
-              Last Name
-            </Text>
-            <Text fontFamily="ZenKakuGothicNewRegular" fontSize={16}>
-              Some weird name
-            </Text>
-          </HStack>
-          <Divider />
-          <HStack margin={5} justifyContent="space-between">
-            <Text fontFamily="ZenKakuGothicNewBold" fontSize={16}>
-              Phone
-            </Text>
-            <Text fontFamily="ZenKakuGothicNewRegular" fontSize={16}>
-              Some weird number
-            </Text>
-          </HStack>
-          <Divider />
           <Pressable
             margin={5}
             width={Dimensions.get("screen").width}
             onPress={() => {
-              navigation.navigate("Settings");
+              console.log("t n c tapped");
+              Linking.openURL("https://expo.dev/privacy").catch((err) =>
+                console.log("Cannot load page", err)
+              );
             }}
           >
             <Text fontFamily="ZenKakuGothicNewBold" fontSize={16}>
-              Settings
+              Terms and Privacy Policy
             </Text>
           </Pressable>
           <Divider />
@@ -135,16 +90,71 @@ export default function Account({ navigation }) {
             margin={5}
             width={Dimensions.get("screen").width}
             onPress={() => {
+              console.log("contact us tapped");
+              Linking.openURL("mailto:krombase1@gmail.com").catch((err) =>
+                console.log("Cannot load page", err)
+              );
+            }}
+          >
+            <Text fontFamily="ZenKakuGothicNewBold" fontSize={16}>
+              Contact Us
+            </Text>
+          </Pressable>
+          <Divider />
+          <Pressable
+            margin={5}
+            width={Dimensions.get("screen").width}
+            onPress={() => {
+              console.log("Check for updates tapped");
+              Linking.openURL(
+                "https://github.com/FrankE01/react-native-assignment-e-commerce-app"
+              ).catch((err) => console.log("Cannot load page", err));
+            }}
+          >
+            <Text fontFamily="ZenKakuGothicNewBold" fontSize={16}>
+              Check for updates
+            </Text>
+          </Pressable>
+          <Divider />
+          <HStack margin={5} justifyContent="space-between">
+            <Text fontFamily="ZenKakuGothicNewBold" fontSize={16}>
+              App Version
+            </Text>
+            <Text fontFamily="ZenKakuGothicNewRegular" fontSize={16}>
+              v1.0.0
+            </Text>
+          </HStack>
+          <Divider />
+          <Pressable
+            margin={5}
+            width={Dimensions.get("screen").width}
+            onPress={() => {
+              console.log("source code tapped");
+              Linking.openURL(
+                "https://github.com/FrankE01/react-native-assignment-e-commerce-app"
+              ).catch((err) => console.log("Cannot load page", err));
+            }}
+          >
+            <Text fontFamily="ZenKakuGothicNewBold" fontSize={16}>
+              View Source Code
+            </Text>
+          </Pressable>
+          <Divider />
+          <Pressable
+            margin={5}
+            width={Dimensions.get("screen").width}
+            onPress={() => {
+              console.log("credits tapped");
               setIsOpen(!isOpen);
             }}
           >
             <Text fontFamily="ZenKakuGothicNewBold" fontSize={16}>
-              Log Out
+              Credits
             </Text>
           </Pressable>
           <Divider />
-          <ConfirmLogOut />
         </VStack>
+        <Credits />
       </React.Fragment>
       <Box margin={7}></Box>
     </>

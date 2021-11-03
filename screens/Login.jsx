@@ -38,7 +38,7 @@ export default function SignUp({ navigation }) {
         </Pressable>
       </HStack>
       <Center flex={1} px={3}>
-        <Heading fontFamily="ZenKakuGothicNewBold">Create Account</Heading>
+        <Heading fontFamily="ZenKakuGothicNewBold">Log In</Heading>
         <FormControl>
           <FormControl.Label _text={{ fontFamily: "ZenKakuGothicNewRegular" }}>
             USERNAME OR EMAIL
