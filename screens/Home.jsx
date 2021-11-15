@@ -4,16 +4,8 @@ import { ImageBackground, Image, Text } from "react-native";
 import { Button, Center, Box, VStack } from "native-base";
 import loginbg from "../assets/images/loginbg.png";
 import applogo from "../assets/images/icon.png";
-import { useFonts } from "expo-font";
 
 export default function Home({ navigation }) {
-  const [loaded] = useFonts({
-    ZenKakuGothicNewBold: require("../assets/fonts/ZenKakuGothicNew-Bold.ttf"),
-  });
-
-  if (!loaded) {
-    return null;
-  }
   return (
     <React.Fragment>
       <ImageBackground

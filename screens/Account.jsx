@@ -7,40 +7,15 @@ import {
   Text,
   VStack,
   Divider,
-  AlertDialog,
-  Button,
 } from "native-base";
 import { StatusBar } from "expo-status-bar";
 import { Dimensions } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import LogoutDialog from "../components/LogoutDialog";
 
 export default function Account({ navigation }) {
   const [isOpen, setIsOpen] = useState(false);
   const onClose = () => setIsOpen(false);
-  const ConfirmLogOut = () => {
-    return (
-      <AlertDialog isOpen={isOpen} onClose={onClose}>
-        <AlertDialog.Content>
-          <AlertDialog.CloseButton />
-          <AlertDialog.Header>Log Out</AlertDialog.Header>
-          <AlertDialog.Body>Are you sure you want to log out?</AlertDialog.Body>
-          <AlertDialog.Footer>
-            <Button.Group space={2}>
-              <Button variant="solid" colorScheme="coolGray" onPress={onClose}>
-                Cancel
-              </Button>
-              <Button
-                colorScheme="danger"
-                onPress={() => navigation.popToTop()}
-              >
-                Log Out
-              </Button>
-            </Button.Group>
-          </AlertDialog.Footer>
-        </AlertDialog.Content>
-      </AlertDialog>
-    );
-  };
   return (
     <>
       <React.Fragment>
@@ -143,7 +118,11 @@ export default function Account({ navigation }) {
             </Text>
           </Pressable>
           <Divider />
-          <ConfirmLogOut />
+          <LogoutDialog
+            isOpen={isOpen}
+            onClose={onClose}
+            navigation={navigation}
+          />
         </VStack>
       </React.Fragment>
       <Box margin={7}></Box>

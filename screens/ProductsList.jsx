@@ -1,8 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
-import { AlertDialog, Button } from "native-base";
+import React, { useContext, useState } from "react";
 import { StatusBar } from "expo-status-bar";
-import { Dimensions, BackHandler, Alert } from "react-native";
-import { useRoute } from "@react-navigation/native";
+import { Dimensions } from "react-native";
 import {
   Center,
   Pressable,
@@ -15,43 +13,14 @@ import {
 } from "native-base";
 import { MaterialCommunityIcons, Ionicons } from "@expo/vector-icons";
 import Product from "./Product";
+import BottomNavigator from "../components/BottomNavigator";
 import AppContext from "../AppContext";
 
 export default function ProductsList({ navigation }) {
-  const route = useRoute();
-  const { allProducts, cart } = useContext(AppContext);
-  const likedProducts = allProducts.filter((product) => {
-    return product.favorite == true;
-  });
+  const { cart } = useContext(AppContext);
+
   const handleNavigation = (item) => {
     navigation.navigate("ProductDetails", { item: item });
-  };
-
-  const [isOpen, setIsOpen] = useState(false);
-  const onClose = () => setIsOpen(false);
-  const ConfirmExit = () => {
-    return (
-      <AlertDialog isOpen={isOpen} onClose={onClose}>
-        <AlertDialog.Content>
-          <AlertDialog.CloseButton />
-          <AlertDialog.Header>Exit</AlertDialog.Header>
-          <AlertDialog.Body>Are you sure you want to exit?</AlertDialog.Body>
-          <AlertDialog.Footer>
-            <Button.Group space={2}>
-              <Button variant="solid" colorScheme="coolGray" onPress={onClose}>
-                Cancel
-              </Button>
-              <Button
-                colorScheme="danger"
-                onPress={() => BackHandler.exitApp()}
-              >
-                Exit
-              </Button>
-            </Button.Group>
-          </AlertDialog.Footer>
-        </AlertDialog.Content>
-      </AlertDialog>
-    );
   };
 
   return (
@@ -156,46 +125,7 @@ export default function ProductsList({ navigation }) {
           <Product handleNavigation={handleNavigation} />
         </Center>
       </ScrollView>
-      <HStack
-        padding={3}
-        borderRadius={20}
-        zIndex={3}
-        justifyContent="space-between"
-        bg="#fff"
-      >
-        <Pressable
-          margin={3}
-          onPress={() => {
-            navigation.navigate("ProductsList");
-          }}
-        >
-          <Ionicons name="home" color="black" size={24} />
-        </Pressable>
-        <Pressable
-          margin={3}
-          onPress={() => {
-            navigation.navigate("Cart");
-          }}
-        >
-          <MaterialCommunityIcons name="cart" size={24} color="black" />
-        </Pressable>
-        <Pressable
-          margin={3}
-          onPress={() => {
-            navigation.navigate("Settings");
-          }}
-        >
-          <Ionicons name="settings" size={24} color="black" />
-        </Pressable>
-        <Pressable
-          margin={3}
-          onPress={() => {
-            navigation.navigate("Account");
-          }}
-        >
-          <MaterialCommunityIcons name="account" size={24} color="black" />
-        </Pressable>
-      </HStack>
+      <BottomNavigator navigation={navigation} />
     </React.Fragment>
   );
 }

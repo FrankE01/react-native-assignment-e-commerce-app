@@ -40,6 +40,7 @@ export default function App() {
       allProducts: products,
       smartphones: smartphones,
       cart: myCart,
+      user: {},
       addCart,
     });
     AsyncStorage.setItem("cart", JSON.stringify(cart), (error, result) => {
@@ -51,6 +52,7 @@ export default function App() {
     allProducts: products,
     smartphones: smartphones,
     cart: myCart,
+    user: {},
     addCart,
   });
 

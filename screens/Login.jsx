@@ -17,13 +17,7 @@ import { useFonts } from "expo-font";
 export default function SignUp({ navigation }) {
   const [secure, setSecure] = useState(true);
   const [icon, setIcon] = useState("eye-with-line");
-  const [loaded] = useFonts({
-    ZenKakuGothicNewBold: require("../assets/fonts/ZenKakuGothicNew-Bold.ttf"),
-    ZenKakuGothicNewRegular: require("../assets/fonts/ZenKakuGothicNew-Regular.ttf"),
-  });
-  if (!loaded) {
-    return null;
-  }
+
   return (
     <React.Fragment>
       <HStack space={250} alignSelf="flex-start" marginTop={25}>

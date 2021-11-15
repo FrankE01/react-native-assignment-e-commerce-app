@@ -1,19 +1,11 @@
 import React, { useContext } from "react";
 import { View, Image, Text, Dimensions } from "react-native";
 import { VStack, HStack, FlatList, Pressable } from "native-base";
-import { useFonts } from "expo-font";
-import LikeButton from "./LikeButton";
 import AppContext from "../AppContext";
 
 export default function Product({ handleNavigation }) {
   const { allProducts: products } = useContext(AppContext);
-  const [loaded] = useFonts({
-    ZenKakuGothicNewBold: require("../assets/fonts/ZenKakuGothicNew-Bold.ttf"),
-    ZenKakuGothicNewRegular: require("../assets/fonts/ZenKakuGothicNew-Regular.ttf"),
-  });
-  if (!loaded) {
-    return null;
-  }
+
   const renderItem = ({ item }) => {
     return (
       <Pressable
@@ -27,7 +19,6 @@ export default function Product({ handleNavigation }) {
             style={{
               width: Dimensions.get("screen").width / 2.2,
               height: Dimensions.get("screen").height / 2.8,
-              // borderRadius: 30,
               borderTopLeftRadius: 30,
               borderTopRightRadius: 30,
               zIndex: 2,
@@ -68,7 +59,6 @@ export default function Product({ handleNavigation }) {
                 >
                   {item.price}
                 </Text>
-                {/* <LikeButton item={item} onLike={handleLike} /> */}
               </HStack>
             </VStack>
           </View>

@@ -9,6 +9,7 @@ import { useFonts } from "expo-font";
 export default function Splash({ navigation }) {
   const [loaded] = useFonts({
     ZenKakuGothicNewBold: require("../assets/fonts/ZenKakuGothicNew-Bold.ttf"),
+    ZenKakuGothicNewRegular: require("../assets/fonts/ZenKakuGothicNew-Regular.ttf"),
   });
 
   const artificialDelay = () => {

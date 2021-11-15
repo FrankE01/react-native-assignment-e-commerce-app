@@ -10,18 +10,18 @@ import {
   Select,
   VStack,
   Button,
+  ScrollView,
   CheckIcon,
   useToast,
 } from "native-base";
 import { Image } from "react-native";
+import Reviews from "../components/Reviews";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import AppContext from "../AppContext";
 
 export default function ProductDetails({ route, navigation }) {
-  const { allProducts, smartphones, cart, addCart } = useContext(AppContext);
-  const likedProducts = allProducts.filter((product) => {
-    return product.favorite == true;
-  });
+  const { smartphones, cart, addCart } = useContext(AppContext);
+
   const [brand, setBrand] = useState("");
   const [model, setModel] = useState("");
   const toast = useToast();
@@ -104,60 +104,78 @@ export default function ProductDetails({ route, navigation }) {
           </Heading>
         </Pressable>
       </HStack>
-      <Center flex={0}>
-        <Image
-          source={route.params.item.thumb}
-          style={{ borderTopLeftRadius: 75, borderTopRightRadius: 75 }}
-          alt={route.params.item.id}
+      <ScrollView>
+        <Center flex={0}>
+          <Image
+            source={route.params.item.thumb}
+            style={{ borderTopLeftRadius: 75, borderTopRightRadius: 75 }}
+            alt={route.params.item.id}
+          />
+        </Center>
+        <Divider
+          width={Dimensions.get("screen").width}
+          alignSelf="center"
+          bg="#000"
         />
-      </Center>
-      <Divider
-        width={Dimensions.get("screen").width}
-        alignSelf="center"
-        bg="#000"
-      />
-      <VStack margin={5}>
-        <Heading fontFamily="ZenKakuGothicNewBold">
-          {route.params.item.name}
-        </Heading>
-        <HStack>
-          <Text fontFamily="ZenKakuGothicNewRegular" fontSize={24}>
-            Price:
-          </Text>
-          <Text fontFamily="ZenKakuGothicNewBold" fontSize={24}>
-            {" " + route.params.item.price}
-          </Text>
-        </HStack>
-        <VStack>
-          <Select
-            placeholder="Choose Phone Brand..."
-            accessibilityLabel="Choose Phone Brand"
-            selectedValue={brand}
-            onValueChange={(itemValue) => {
-              setBrand(itemValue);
-            }}
-            bg="#fff"
-            _selectedItem={{
-              bg: "#df8d8e",
-              endIcon: <CheckIcon size={5} />,
-            }}
-            _placeholder={{ fontFamily: "ZenKakuGothicNewBold" }}
-          >
-            {Object.keys(smartphones).map((phone) => {
-              return (
-                <Select.Item
-                  key={phone}
-                  label={phone}
-                  value={phone}
-                  _text={{ fontFamily: "ZenKakuGothicNewBold" }}
-                />
-              );
-            })}
-          </Select>
+        <VStack margin={5}>
+          <Heading fontFamily="ZenKakuGothicNewBold">
+            {route.params.item.name}
+          </Heading>
+          <HStack>
+            <Text fontFamily="ZenKakuGothicNewRegular" fontSize={24}>
+              Price:
+            </Text>
+            <Text
+              color="#4ecd94"
+              fontFamily="ZenKakuGothicNewBold"
+              fontSize={24}
+            >
+              {" " + route.params.item.price}
+            </Text>
+          </HStack>
+          <VStack>
+            <Select
+              placeholder="Choose Phone Brand..."
+              accessibilityLabel="Choose Phone Brand"
+              selectedValue={brand}
+              onValueChange={(itemValue) => {
+                setBrand(itemValue);
+              }}
+              bg="#fff"
+              _selectedItem={{
+                bg: "#df8d8e",
+                endIcon: <CheckIcon size={5} />,
+              }}
+              _placeholder={{ fontFamily: "ZenKakuGothicNewBold" }}
+            >
+              {Object.keys(smartphones).map((phone) => {
+                return (
+                  <Select.Item
+                    key={phone}
+                    label={phone}
+                    value={phone}
+                    _text={{ fontFamily: "ZenKakuGothicNewBold" }}
+                  />
+                );
+              })}
+            </Select>
+          </VStack>
+          <Model />
         </VStack>
-        <Model />
-      </VStack>
-      <HStack justifyContent="space-between" marginLeft={30} marginRight={30}>
+        <Divider
+          width={Dimensions.get("screen").width}
+          alignSelf="center"
+          bg="#000"
+        />
+        <Reviews />
+      </ScrollView>
+      <HStack
+        justifyContent="space-between"
+        marginLeft={30}
+        marginRight={30}
+        marginTop={2}
+        marginBottom={2}
+      >
         <Button
           height={50}
           width={230}

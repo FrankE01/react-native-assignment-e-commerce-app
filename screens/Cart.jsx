@@ -256,7 +256,11 @@ export default function Cart({ navigation }) {
               <Text fontSize={20} fontFamily="ZenKakuGothicNewBold">
                 Amount to pay:
               </Text>
-              <Text fontSize={20} fontFamily="ZenKakuGothicNewBold">
+              <Text
+                color="#00af00"
+                fontSize={20}
+                fontFamily="ZenKakuGothicNewBold"
+              >
                 {"$" + (subtotal - discount) + ".00"}
               </Text>
             </HStack>

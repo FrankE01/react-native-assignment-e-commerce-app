@@ -2,17 +2,9 @@ import React from "react";
 import { Dimensions } from "react-native";
 import { Center, Image, Text, Button } from "native-base";
 import ConfettiCannon from "react-native-confetti-cannon";
-import { useFonts } from "expo-font";
 import greencheckmark from "../assets/images/greencheckmark.png";
 
 export default function End({ navigation }) {
-  const [loaded] = useFonts({
-    ZenKakuGothicNewBold: require("../assets/fonts/ZenKakuGothicNew-Bold.ttf"),
-    ZenKakuGothicNewRegular: require("../assets/fonts/ZenKakuGothicNew-Regular.ttf"),
-  });
-  if (!loaded) {
-    return null;
-  }
   return (
     <>
       <Center flex={1}>

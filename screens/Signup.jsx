@@ -13,19 +13,11 @@ import {
 import { Dimensions } from "react-native";
 import { Ionicons, Entypo } from "@expo/vector-icons";
 import { useFonts } from "expo-font";
-import AppContext from "../AppContext";
 
 export default function SignUp({ navigation }) {
-  const { cart, addCart } = useContext(AppContext);
   const [secure, setSecure] = useState(true);
   const [icon, setIcon] = useState("eye-with-line");
-  const [loaded] = useFonts({
-    ZenKakuGothicNewBold: require("../assets/fonts/ZenKakuGothicNew-Bold.ttf"),
-    ZenKakuGothicNewRegular: require("../assets/fonts/ZenKakuGothicNew-Regular.ttf"),
-  });
-  if (!loaded) {
-    return null;
-  }
+
   return (
     <React.Fragment>
       <HStack space={250} alignSelf="flex-start" marginTop={25}>
