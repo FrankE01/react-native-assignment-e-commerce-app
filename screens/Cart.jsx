@@ -16,17 +16,19 @@ import {
 } from "native-base";
 import { MaterialIcons, Ionicons } from "@expo/vector-icons";
 import AppContext from "../AppContext";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function Cart({ navigation }) {
+  let discount = 10;
+
   const { cart, addCart } = useContext(AppContext);
   let sub = 0;
-  let discount = 10;
+
   cart.map((item) => {
     sub += parseInt(item.price.split(".")[0].substr(1)) * parseInt(item.order);
   });
   const [subtotal, setSubtotal] = useState(sub);
   const toast = useToast();
-  var img;
   const renderItem = ({ item }) => {
     return (
       <HStack
@@ -43,7 +45,6 @@ export default function Cart({ navigation }) {
           alt={item.id}
           borderRadius={10}
         />
-        {console.log(item.thumb)}
         <VStack flex={1} justifyContent="space-between" marginLeft={3}>
           <Text fontFamily="ZenKakuGothicNewRegular" fontSize={17}>
             {item.name}
@@ -94,6 +95,13 @@ export default function Cart({ navigation }) {
                     parseInt(citem.order);
                 });
                 setSubtotal(sub);
+                AsyncStorage.setItem(
+                  "cart",
+                  JSON.stringify(cart),
+                  (error, result) => {
+                    // console.log(result);
+                  }
+                );
               }}
             >
               <Ionicons name="remove" color="#fff" size={20} />
@@ -128,6 +136,13 @@ export default function Cart({ navigation }) {
                     parseInt(citem.order);
                 });
                 setSubtotal(sub);
+                AsyncStorage.setItem(
+                  "cart",
+                  JSON.stringify(cart),
+                  (error, result) => {
+                    // console.log(result);
+                  }
+                );
               }}
             >
               <Ionicons name="add" color="#fff" size={20} />

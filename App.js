@@ -15,11 +15,13 @@ import Settings from "./screens/Settings";
 import Checkout from "./screens/Checkout";
 import End from "./screens/End";
 import AppContext from "./AppContext";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Stack = createStackNavigator();
 
 export default function App() {
   let myCart = cart;
+  let tempcart;
 
   const addCart = (item) => {
     tempcart = myCart.filter((citem) => {
@@ -40,6 +42,9 @@ export default function App() {
       cart: myCart,
       addCart,
     });
+    AsyncStorage.setItem("cart", JSON.stringify(cart), (error, result) => {
+      // console.log(result);
+    });
   };
 
   const [userSettings, setUserSettings] = useState({
@@ -47,6 +52,11 @@ export default function App() {
     smartphones: smartphones,
     cart: myCart,
     addCart,
+  });
+
+  AsyncStorage.getItem("cart", (error, result) => {
+    savedCart = JSON.parse(result);
+    userSettings.cart = savedCart;
   });
 
   return (

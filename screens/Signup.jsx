@@ -13,8 +13,10 @@ import {
 import { Dimensions } from "react-native";
 import { Ionicons, Entypo } from "@expo/vector-icons";
 import { useFonts } from "expo-font";
+import AppContext from "../AppContext";
 
 export default function SignUp({ navigation }) {
+  const { cart, addCart } = useContext(AppContext);
   const [secure, setSecure] = useState(true);
   const [icon, setIcon] = useState("eye-with-line");
   const [loaded] = useFonts({

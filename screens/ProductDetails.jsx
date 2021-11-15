@@ -62,6 +62,7 @@ export default function ProductDetails({ route, navigation }) {
             {smartphones[brand].map((model) => {
               return (
                 <Select.Item
+                  key={model}
                   label={model}
                   value={model}
                   _text={{ fontFamily: "ZenKakuGothicNewRegular" }}
@@ -145,6 +146,7 @@ export default function ProductDetails({ route, navigation }) {
             {Object.keys(smartphones).map((phone) => {
               return (
                 <Select.Item
+                  key={phone}
                   label={phone}
                   value={phone}
                   _text={{ fontFamily: "ZenKakuGothicNewBold" }}

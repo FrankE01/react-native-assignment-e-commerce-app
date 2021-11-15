@@ -1,10 +1,9 @@
 import React, { useContext } from "react";
 import { View, Image, Text, Dimensions } from "react-native";
-import { VStack, HStack, FlatList } from "native-base";
+import { VStack, HStack, FlatList, Pressable } from "native-base";
 import { useFonts } from "expo-font";
 import LikeButton from "./LikeButton";
 import AppContext from "../AppContext";
-import Pressable from "react-native/Libraries/Components/Pressable/Pressable";
 
 export default function Product({ handleNavigation }) {
   const { allProducts: products } = useContext(AppContext);
@@ -28,7 +27,9 @@ export default function Product({ handleNavigation }) {
             style={{
               width: Dimensions.get("screen").width / 2.2,
               height: Dimensions.get("screen").height / 2.8,
-              borderRadius: 30,
+              // borderRadius: 30,
+              borderTopLeftRadius: 30,
+              borderTopRightRadius: 30,
               zIndex: 2,
             }}
           />
@@ -46,8 +47,7 @@ export default function Product({ handleNavigation }) {
               <Text
                 style={{
                   textAlign: "center",
-                  marginTop: 22,
-                  marginLeft: 12,
+                  marginTop: 30,
                   fontSize: 20,
                   fontFamily: "ZenKakuGothicNewRegular",
                 }}
@@ -63,6 +63,7 @@ export default function Product({ handleNavigation }) {
                     marginLeft: 12,
                     fontSize: 20,
                     fontFamily: "ZenKakuGothicNewBold",
+                    color: "#4ecd94",
                   }}
                 >
                   {item.price}

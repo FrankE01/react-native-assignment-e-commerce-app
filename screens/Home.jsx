@@ -46,7 +46,9 @@ export default function Home({ navigation }) {
               fontSize: 25,
               fontFamily: "ZenKakuGothicNewBold",
             }}
-            onPress={() => navigation.navigate("LogIn")}
+            onPress={() => {
+              navigation.navigate("LogIn");
+            }}
           >
             Log In
           </Button>
@@ -54,7 +56,9 @@ export default function Home({ navigation }) {
             colorScheme={styles.button.signUp.backgroundColor}
             style={styles.button}
             _text={{ fontSize: 25, fontFamily: "ZenKakuGothicNewBold" }}
-            onPress={() => navigation.navigate("SignUp")}
+            onPress={() => {
+              navigation.navigate("SignUp");
+            }}
           >
             Sign Up
           </Button>
