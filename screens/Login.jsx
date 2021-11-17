@@ -12,7 +12,6 @@ import {
 } from "native-base";
 import { Dimensions } from "react-native";
 import { Ionicons, Entypo } from "@expo/vector-icons";
-import { useFonts } from "expo-font";
 
 export default function SignUp({ navigation }) {
   const [secure, setSecure] = useState(true);

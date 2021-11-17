@@ -1,51 +1,8 @@
-import one from "./assets/images/1.jpg";
-import two from "./assets/images/2.jpg";
-import three from "./assets/images/3.jpg";
-import four from "./assets/images/4.jpg";
-import five from "./assets/images/5.jpg";
-import six from "./assets/images/6.jpg";
-import seven from "./assets/images/7.jpg";
-import eight from "./assets/images/8.jpg";
-import nine from "./assets/images/9.jpg";
-import ten from "./assets/images/10.jpg";
-import eleven from "./assets/images/11.jpg";
-import twelve from "./assets/images/12.jpg";
-import thirteen from "./assets/images/13.jpg";
-import fourteen from "./assets/images/14.jpg";
-import fifteen from "./assets/images/15.jpg";
-import sixteen from "./assets/images/16.jpg";
-import seventeen from "./assets/images/17.jpg";
-import eighteen from "./assets/images/18.jpg";
-import nineteen from "./assets/images/19.jpg";
-import twenty from "./assets/images/20.jpg";
-import twentyone from "./assets/images/21.jpg";
-import twentytwo from "./assets/images/22.jpg";
-import twentythree from "./assets/images/23.jpg";
-import twentyfour from "./assets/images/24.jpg";
-import twentyfive from "./assets/images/25.jpg";
-import twentysix from "./assets/images/26.jpg";
-import twentyseven from "./assets/images/27.jpg";
-import twentyeight from "./assets/images/28.jpg";
-import twentynine from "./assets/images/29.jpg";
-import thirty from "./assets/images/30.jpg";
-import thirtyone from "./assets/images/31.jpg";
-import thirtytwo from "./assets/images/33.jpg";
-import thirtythree from "./assets/images/33.jpg";
-import thirtyfour from "./assets/images/34.jpg";
-import thirtyfive from "./assets/images/35.jpg";
-import thirtysix from "./assets/images/36.jpg";
-import thirtyseven from "./assets/images/37.jpg";
-import thirtyeight from "./assets/images/38.jpg";
-import thirtynine from "./assets/images/39.jpg";
-import fourty from "./assets/images/40.jpg";
-import fourtyone from "./assets/images/41.jpg";
-import fourtytwo from "./assets/images/42.jpg";
-
 var products = [
   {
     name: "Scorpio Galaxy",
     id: 1,
-    thumb: one,
+    thumb: require("./assets/images/1.jpg"),
     price: "$12.00",
     favorite: false,
     icon: "cart-plus",
@@ -55,7 +12,7 @@ var products = [
   {
     name: "Letter E",
     id: 2,
-    thumb: two,
+    thumb: require("./assets/images/2.jpg"),
     price: "$12.00",
     favorite: false,
     icon: "cart-plus",
@@ -65,7 +22,7 @@ var products = [
   {
     name: "Squid Games 1",
     id: 3,
-    thumb: three,
+    thumb: require("./assets/images/3.jpg"),
     price: "$12.00",
     favorite: false,
     icon: "cart-plus",
@@ -75,7 +32,7 @@ var products = [
   {
     name: "French Stripes 1",
     id: 4,
-    thumb: four,
+    thumb: require("./assets/images/4.jpg"),
     price: "$12.00",
     favorite: false,
     icon: "cart-plus",
@@ -85,7 +42,7 @@ var products = [
   {
     name: "French Stripes 2",
     id: 5,
-    thumb: five,
+    thumb: require("./assets/images/5.jpg"),
     price: "$12.00",
     favorite: false,
     icon: "cart-plus",
@@ -95,7 +52,7 @@ var products = [
   {
     name: "French Stripes 3",
     id: 6,
-    thumb: six,
+    thumb: require("./assets/images/6.jpg"),
     price: "$12.00",
     favorite: false,
     icon: "cart-plus",
@@ -105,7 +62,7 @@ var products = [
   {
     name: "Squid Games 2",
     id: 7,
-    thumb: seven,
+    thumb: require("./assets/images/7.jpg"),
     price: "$12.00",
     favorite: false,
     icon: "cart-plus",
@@ -115,7 +72,7 @@ var products = [
   {
     name: "Duo Tone 1",
     id: 8,
-    thumb: eight,
+    thumb: require("./assets/images/8.jpg"),
     price: "$12.00",
     favorite: false,
     icon: "cart-plus",
@@ -125,7 +82,7 @@ var products = [
   {
     name: "Duo Tone 2",
     id: 9,
-    thumb: nine,
+    thumb: require("./assets/images/9.jpg"),
     price: "$12.00",
     favorite: false,
     icon: "cart-plus",
@@ -135,7 +92,7 @@ var products = [
   {
     name: "Duo Tone 3",
     id: 10,
-    thumb: ten,
+    thumb: require("./assets/images/10.jpg"),
     price: "$12.00",
     favorite: false,
     icon: "cart-plus",
@@ -145,7 +102,7 @@ var products = [
   {
     name: "Squid Games 3",
     id: 11,
-    thumb: eleven,
+    thumb: require("./assets/images/11.jpg"),
     price: "$12.00",
     favorite: false,
     icon: "cart-plus",
@@ -155,7 +112,7 @@ var products = [
   {
     name: "Squid Games 4",
     id: 12,
-    thumb: twelve,
+    thumb: require("./assets/images/12.jpg"),
     price: "$12.00",
     favorite: false,
     icon: "cart-plus",
@@ -165,7 +122,7 @@ var products = [
   {
     name: "Flower Pot",
     id: 13,
-    thumb: thirteen,
+    thumb: require("./assets/images/13.jpg"),
     price: "$12.00",
     favorite: false,
     icon: "cart-plus",
@@ -175,7 +132,7 @@ var products = [
   {
     name: "Green Plus",
     id: 14,
-    thumb: fourteen,
+    thumb: require("./assets/images/14.jpg"),
     price: "$12.00",
     favorite: false,
     icon: "cart-plus",
@@ -185,7 +142,7 @@ var products = [
   {
     name: "Human Art 1",
     id: 15,
-    thumb: fifteen,
+    thumb: require("./assets/images/15.jpg"),
     price: "$12.00",
     favorite: false,
     icon: "cart-plus",
@@ -195,7 +152,7 @@ var products = [
   {
     name: "Human Art 2",
     id: 16,
-    thumb: sixteen,
+    thumb: require("./assets/images/16.jpg"),
     price: "$12.00",
     favorite: false,
     icon: "cart-plus",
@@ -205,7 +162,7 @@ var products = [
   {
     name: "Woman in Cup",
     id: 17,
-    thumb: seventeen,
+    thumb: require("./assets/images/17.jpg"),
     price: "$12.00",
     favorite: false,
     icon: "cart-plus",
@@ -215,7 +172,7 @@ var products = [
   {
     name: "Human Art 3",
     id: 18,
-    thumb: eighteen,
+    thumb: require("./assets/images/18.jpg"),
     price: "$12.00",
     favorite: false,
     icon: "cart-plus",
@@ -225,7 +182,7 @@ var products = [
   {
     name: "Human Art 4",
     id: 19,
-    thumb: nineteen,
+    thumb: require("./assets/images/19.jpg"),
     price: "$12.00",
     favorite: false,
     icon: "cart-plus",
@@ -235,7 +192,7 @@ var products = [
   {
     name: "Human Art 5",
     id: 20,
-    thumb: twenty,
+    thumb: require("./assets/images/20.jpg"),
     price: "$12.00",
     favorite: false,
     icon: "cart-plus",
@@ -245,7 +202,7 @@ var products = [
   {
     name: "Human Art 6",
     id: 21,
-    thumb: twentyone,
+    thumb: require("./assets/images/21.jpg"),
     price: "$12.00",
     favorite: false,
     icon: "cart-plus",
@@ -255,7 +212,7 @@ var products = [
   {
     name: "Gemini Galaxy",
     id: 22,
-    thumb: twentytwo,
+    thumb: require("./assets/images/22.jpg"),
     price: "$12.00",
     favorite: false,
     icon: "cart-plus",
@@ -265,7 +222,7 @@ var products = [
   {
     name: "Clouds 1",
     id: 23,
-    thumb: twentythree,
+    thumb: require("./assets/images/23.jpg"),
     price: "$12.00",
     favorite: false,
     icon: "cart-plus",
@@ -275,7 +232,7 @@ var products = [
   {
     name: "Clouds 2",
     id: 24,
-    thumb: twentyfour,
+    thumb: require("./assets/images/24.jpg"),
     price: "$12.00",
     favorite: false,
     icon: "cart-plus",
@@ -285,7 +242,7 @@ var products = [
   {
     name: "Clouds 3",
     id: 25,
-    thumb: twentyfive,
+    thumb: require("./assets/images/25.jpg"),
     price: "$12.00",
     favorite: false,
     icon: "cart-plus",
@@ -295,7 +252,7 @@ var products = [
   {
     name: "Clouds 4",
     id: 26,
-    thumb: twentysix,
+    thumb: require("./assets/images/26.jpg"),
     price: "$12.00",
     favorite: false,
     icon: "cart-plus",
@@ -305,7 +262,7 @@ var products = [
   {
     name: "Clouds 5",
     id: 27,
-    thumb: twentyseven,
+    thumb: require("./assets/images/27.jpg"),
     price: "$12.00",
     favorite: false,
     icon: "cart-plus",
@@ -315,7 +272,7 @@ var products = [
   {
     name: "Green Leaves",
     id: 28,
-    thumb: twentyeight,
+    thumb: require("./assets/images/28.jpg"),
     price: "$12.00",
     favorite: false,
     icon: "cart-plus",
@@ -325,7 +282,7 @@ var products = [
   {
     name: "Hello Flower",
     id: 29,
-    thumb: twentynine,
+    thumb: require("./assets/images/29.jpg"),
     price: "$12.00",
     favorite: false,
     icon: "cart-plus",
@@ -335,7 +292,7 @@ var products = [
   {
     name: "Flower",
     id: 30,
-    thumb: thirty,
+    thumb: require("./assets/images/30.jpg"),
     price: "$12.00",
     favorite: false,
     icon: "cart-plus",
@@ -345,7 +302,7 @@ var products = [
   {
     name: "Flower Art",
     id: 31,
-    thumb: thirtyone,
+    thumb: require("./assets/images/31.jpg"),
     price: "$12.00",
     favorite: false,
     icon: "cart-plus",
@@ -355,7 +312,7 @@ var products = [
   {
     name: "Be(e) Kind",
     id: 32,
-    thumb: thirtytwo,
+    thumb: require("./assets/images/32.jpg"),
     price: "$12.00",
     favorite: false,
     icon: "cart-plus",
@@ -365,7 +322,7 @@ var products = [
   {
     name: "Love and Pizza",
     id: 33,
-    thumb: thirtythree,
+    thumb: require("./assets/images/33.jpg"),
     price: "$12.00",
     favorite: false,
     icon: "cart-plus",
@@ -375,7 +332,7 @@ var products = [
   {
     name: "Butterflies",
     id: 34,
-    thumb: thirtyfour,
+    thumb: require("./assets/images/34.jpg"),
     price: "$12.00",
     favorite: false,
     icon: "cart-plus",
@@ -385,7 +342,7 @@ var products = [
   {
     name: "Be Okay",
     id: 35,
-    thumb: thirtyfive,
+    thumb: require("./assets/images/35.jpg"),
     price: "$12.00",
     favorite: false,
     icon: "cart-plus",
@@ -395,7 +352,7 @@ var products = [
   {
     name: "Beautiful Person",
     id: 36,
-    thumb: thirtysix,
+    thumb: require("./assets/images/36.jpg"),
     price: "$12.00",
     favorite: false,
     icon: "cart-plus",
@@ -405,7 +362,7 @@ var products = [
   {
     name: "Strawberry Day",
     id: 37,
-    thumb: thirtyseven,
+    thumb: require("./assets/images/37.jpg"),
     price: "$12.00",
     favorite: false,
     icon: "cart-plus",
@@ -415,7 +372,7 @@ var products = [
   {
     name: "Get a Dog",
     id: 38,
-    thumb: thirtyeight,
+    thumb: require("./assets/images/38.jpg"),
     price: "$12.00",
     favorite: false,
     icon: "cart-plus",
@@ -425,7 +382,7 @@ var products = [
   {
     name: "White Flowers",
     id: 39,
-    thumb: thirtynine,
+    thumb: require("./assets/images/39.jpg"),
     price: "$12.00",
     favorite: false,
     icon: "cart-plus",
@@ -435,7 +392,7 @@ var products = [
   {
     name: "Flower 2",
     id: 40,
-    thumb: fourty,
+    thumb: require("./assets/images/40.jpg"),
     price: "$12.00",
     favorite: false,
     icon: "cart-plus",
@@ -445,7 +402,7 @@ var products = [
   {
     name: "Happy",
     id: 41,
-    thumb: fourtyone,
+    thumb: require("./assets/images/41.jpg"),
     price: "$12.00",
     favorite: false,
     icon: "cart-plus",
@@ -455,7 +412,7 @@ var products = [
   {
     name: "Letter A",
     id: 42,
-    thumb: fourtytwo,
+    thumb: require("./assets/images/42.jpg"),
     price: "$12.00",
     favorite: false,
     icon: "cart-plus",
